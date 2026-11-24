@@ -6,11 +6,15 @@
 <title>Cocoa Amore · Handmade chocolate on Silver Street, Leicester (redesign concept)</title>
 <meta name="description" content="A redesign concept for Cocoa Amore, handmade chocolate on Silver Street, Leicester since 2013.">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0705">
+<link rel="preload" as="image" href="img/hero-desk.jpg" media="(min-width: 769px)">
+<link rel="preload" as="image" href="img/hero-mob.jpg" media="(max-width: 768px)">
 <link rel="stylesheet" href="fonts.css">
+<style>html,body{background:#0B0705;margin:0}</style>
 <script src="morphdom.js"></script>
 <script src="dc.js"></script>
 </head>
-<body style="margin:0">
+<body>
 <template id="dc"><x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -237,7 +241,7 @@ a{color:#7A5A24}a:hover{color:#1E120D}
           <a class="on" href="#">Home</a><a href="#story">About</a><a href="#shop">Shop chocolate</a><a href="#workshops">Workshops</a>
         </nav>
       </div>
-      <a href="#" aria-label="Cocoa Amore home" style="display: block"><img class="logo" src="img/7ebaf4a7277ffee4ca7508a09fe88e73.png" alt="Cocoa Amore" style="width: auto; display: block"></a>
+      <a href="#" aria-label="Cocoa Amore home" style="display: block"><img class="logo" src="img/7ebaf4a7277ffee4ca7508a09fe88e73.webp" alt="Cocoa Amore" style="width: auto; display: block"></a>
       <div style="display: flex; align-items: center; gap: 36px">
         <nav class="nav serif" aria-label="More" style="display: flex; gap: 36px; font-size: 15px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase">
           <a href="#collection">The collection</a><a href="#">FAQ</a><a href="#visit">Contact</a><a href="#">Blog</a>
@@ -250,7 +254,7 @@ a{color:#7A5A24}a:hover{color:#1E120D}
   <sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
     <div role="dialog" aria-label="Menu" style="position: fixed; inset: 0; z-index: 100; background: #1E120D; display: flex; flex-direction: column; padding: 24px 20px 40px; box-sizing: border-box; overflow-y: auto">
       <div style="display: flex; justify-content: space-between; align-items: center">
-        <img src="img/7ebaf4a7277ffee4ca7508a09fe88e73.png" alt="Cocoa Amore" style="height: 44px; width: auto">
+        <img src="img/7ebaf4a7277ffee4ca7508a09fe88e73.webp" alt="Cocoa Amore" style="height: 44px; width: auto" loading="lazy" decoding="async">
         <button type="button" onClick="{{closeMenu}}" aria-label="Close menu" style="width: 44px; height: 44px; background: transparent; border: 0; color: #F8E8C4; cursor: pointer; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
       </div>
       <nav aria-label="Mobile" class="serif" style="display: flex; flex-direction: column; gap: 6px; margin-top: 48px">
@@ -262,8 +266,8 @@ a{color:#7A5A24}a:hover{color:#1E120D}
 
   <!-- 2 CINEMATIC HERO -->
   <section data-pt="A" class="hero {{heroCls}}" aria-label="Cocoa to creation" style="position: relative; height: 100vh; min-height: 720px; max-height: 1000px; background: #0B0705; overflow: hidden">
-    <video class="film film-desk" src="img/eab5c5045543e26009ab88d688a4504a.mp4" muted playsinline loop preload="auto" aria-label="Short film: a cocoa pod opens, the beans are roasted, melted into chocolate, poured into a mould and become the Gingerbread bar" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; z-index: 1"></video>
-    <video class="film film-mob" src="img/36e755463d76007a13f02c7180b706d3.mp4" muted playsinline loop preload="auto" aria-label="Short film: a cocoa pod opens, the beans are roasted, melted into chocolate, poured into a mould and become the Gingerbread bar" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; z-index: 1"></video>
+    <video class="film film-desk" src="img/hero-desk.mp4" poster="img/hero-desk.jpg" muted playsinline loop preload="none" aria-label="Short film: a cocoa pod opens, the beans are roasted, melted into chocolate, poured into a mould and become the Gingerbread bar" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; z-index: 1"></video>
+    <video class="film film-mob" src="img/hero-mob.mp4" poster="img/hero-mob.jpg" muted playsinline loop preload="none" aria-label="Short film: a cocoa pod opens, the beans are roasted, melted into chocolate, poured into a mould and become the Gingerbread bar" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; z-index: 1"></video>
     <div aria-hidden="true" class="hero-scrim" style="position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(to right, rgba(11,7,5,.85) 0%, rgba(11,7,5,.55) 34%, rgba(11,7,5,0) 52%)"></div>
       <div class="hero-final" style="position: absolute; inset: 0; z-index: 4">
         <div class="hero-copy" style="position: relative; z-index: 4; width: 44%; max-width: 620px; height: 100%; box-sizing: border-box; padding: 0 0 0 80px; display: flex; flex-direction: column; justify-content: center; gap: 28px">
@@ -319,8 +323,8 @@ a{color:#7A5A24}a:hover{color:#1E120D}
         </div>
         <div class="prod fluff-art" style="flex: 1.1 1 480px; min-width: 0; display: flex; justify-content: center; align-items: center; position: relative; z-index: 2; min-height: 680px">
           <div aria-hidden="true" style="position: absolute; width: 78%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(224,69,123,.32) 0%, rgba(224,69,123,0) 65%)"></div>
-          <img class="fluff-bar" src="img/bb4553aeb91186e594a21279db8d8d07.png" alt="The Fluff limited-edition bar: milk chocolate filled with marshmallow fluff, in a purple, pink and brown wrapper" style="position: relative; width: min(560px, 92%); height: auto; display: block; transform: rotate(-16deg); filter: drop-shadow(-24px 50px 46px rgba(20,8,24,.6))">
-          <img class="fluff-chunk" src="img/e70908fdd5c13cd3789af336006e8b0a.png" alt="" aria-hidden="true" style="position: absolute; right: 2%; bottom: 2%; width: clamp(150px, 19vw, 270px); height: auto; transform: rotate(-10deg); z-index: 3; filter: drop-shadow(0 24px 24px rgba(20,8,24,.5))">
+          <img class="fluff-bar" src="img/bb4553aeb91186e594a21279db8d8d07.webp" alt="The Fluff limited-edition bar: milk chocolate filled with marshmallow fluff, in a purple, pink and brown wrapper" style="position: relative; width: min(560px, 92%); height: auto; display: block; transform: rotate(-16deg); filter: drop-shadow(-24px 50px 46px rgba(20,8,24,.6))" loading="lazy" decoding="async">
+          <img class="fluff-chunk" src="img/e70908fdd5c13cd3789af336006e8b0a.webp" alt="" aria-hidden="true" style="position: absolute; right: 2%; bottom: 2%; width: clamp(150px, 19vw, 270px); height: auto; transform: rotate(-10deg); z-index: 3; filter: drop-shadow(0 24px 24px rgba(20,8,24,.5))" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
@@ -337,7 +341,7 @@ a{color:#7A5A24}a:hover{color:#1E120D}
         <div class="stickcol" style="flex: 1 1 520px; min-width: 0; position: sticky; top: 112px; height: 72vh; max-height: 680px">
           <sc-for list="{{stageVis}}" as="v" hint-placeholder-count="4">
             <div class="sv sv-free {{v.cls}}">
-              <img src="{{v.src}}" alt="{{v.alt}}">
+              <img src="{{v.src}}" alt="{{v.alt}}" loading="lazy" decoding="async">
             </div>
           </sc-for>
           <div style="position: absolute; right: 24px; top: 24px; display: flex; gap: 8px; z-index: 2">
@@ -370,16 +374,16 @@ a{color:#7A5A24}a:hover{color:#1E120D}
       </div>
       <div class="coll-grid" style="flex: 1.5 1 560px; min-width: 0; position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 72px 28px">
         <figure class="mask zoomwrap" style="grid-column: 1 / span 6; margin: 0; display: flex; flex-direction: column; gap: 18px">
-          <div style="overflow: hidden; height: 440px"><img class="zoom" src="img/3357809504950a18abfdbb598e64710a.jpg" alt="Christmas gift box of six chocolates and two chocolate nutcracker figures in a gold tray" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
+          <div style="overflow: hidden; height: 440px"><img class="zoom" src="img/3357809504950a18abfdbb598e64710a.webp" alt="Christmas gift box of six chocolates and two chocolate nutcracker figures in a gold tray" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
           <figcaption class="cap"><div class="cap-row"><span class="cap-meta"><span class="idx serif">01</span><span class="eyebrow tag">Seasonal · Gift box</span></span><span class="price">£4.50–£14.50</span></div><div class="cap-row"><span class="serif" style="font-size: 28px">Chocolate Nutcrackers</span><a class="shop" href="#">Shop <span class="ar" aria-hidden="true">→</span></a></div></figcaption>
         </figure>
         <figure class="rv d1 zoomwrap coll-mix" style="grid-column: 1 / span 3; margin: 0; display: flex; flex-direction: column; gap: 18px">
-          <div style="overflow: hidden; height: 560px"><img class="zoom" src="img/e25e98165b308aed6c34f84adb67ddde.jpg" alt="Two handmade Cocoa Amore chocolate slabs topped with pistachio and white chocolate, in front of a 3 for £12 chalkboard" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 70%; display: block"></div>
+          <div style="overflow: hidden; height: 560px"><img class="zoom" src="img/e25e98165b308aed6c34f84adb67ddde.webp" alt="Two handmade Cocoa Amore chocolate slabs topped with pistachio and white chocolate, in front of a 3 for £12 chalkboard" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 70%; display: block" loading="lazy" decoding="async"></div>
           <figcaption class="cap"><div class="cap-row"><span class="cap-meta"><span class="idx serif">02</span><span class="eyebrow tag">Bars · Pick any 3</span></span><span class="price">3 for £12</span></div><div class="cap-row"><span class="serif" style="font-size: 24px">Mix &amp; Match bars</span><a class="shop" href="#">Shop <span class="ar" aria-hidden="true">→</span></a></div></figcaption>
         </figure>
         <div class="coll-side" style="grid-column: 4 / span 3; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 28px">
           <figure class="rv d2 zoomwrap" style="margin: 0; display: flex; flex-direction: column; gap: 18px">
-            <div class="evil-img" style="overflow: hidden; height: 312px"><img class="zoom" src="img/bf7cab755f061f116fa6313f7c7d61f3.jpg" alt="A tin full of The Evil Bread bars: 33% milk chocolate and sourdough breadcrumb, in brown and red wrappers" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
+            <div class="evil-img" style="overflow: hidden; height: 312px"><img class="zoom" src="img/bf7cab755f061f116fa6313f7c7d61f3.webp" alt="A tin full of The Evil Bread bars: 33% milk chocolate and sourdough breadcrumb, in brown and red wrappers" style="width: 100%; height: 100%; object-fit: cover; display: block" loading="lazy" decoding="async"></div>
             <figcaption class="cap"><div class="cap-row"><span class="cap-meta"><span class="idx serif">03</span><span class="eyebrow tag">Bars · Sourdough</span></span><span class="price"></span></div><div class="cap-row"><span class="serif" style="font-size: 24px">The Evil Bread</span><a class="shop" href="#">Shop <span class="ar" aria-hidden="true">→</span></a></div></figcaption>
           </figure>
           <a class="rv d3 coll-card" href="#">
@@ -410,7 +414,7 @@ a{color:#7A5A24}a:hover{color:#1E120D}
         <div class="rv d4"><a class="btn btn-gold" href="#">Explore workshops</a></div>
       </div>
       <div class="mask ph-photo" style="--ar: 4 / 5; flex: 1 1 560px; min-width: 0; min-height: 760px; background: #1E120D; position: relative; overflow: hidden">
-        <img src="img/694bb4fb22999697a47e1781d5139f87.jpg" alt="Guests in aprons decorating chocolate Easter eggs together at a Cocoa Amore workshop" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; display: block">
+        <img src="img/694bb4fb22999697a47e1781d5139f87.webp" alt="Guests in aprons decorating chocolate Easter eggs together at a Cocoa Amore workshop" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; display: block" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -425,8 +429,8 @@ a{color:#7A5A24}a:hover{color:#1E120D}
       <div class="sup" style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center"><a class="btn btn-gold" href="#">Discover seasonal chocolate</a></div>
       <div class="prod" style="position: relative; width: min(820px, 100%); margin-top: 48px; display: flex; justify-content: center">
         <div aria-hidden="true" style="position: absolute; left: 50%; top: 50%; width: 90%; aspect-ratio: 2 / 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(ellipse, rgba(90,160,230,.28) 0%, rgba(90,160,230,0) 65%)"></div>
-        <img class="xmas-bar" src="img/ff73b765e261fae9345ff8485edd8b50.png" alt="Cocoa Amore Merry Christmas milk chocolate bar: Santa's sleigh and reindeer across a full moon on a blue wrapper" style="position: relative; width: 100%; height: auto; display: block; filter: drop-shadow(0 50px 46px rgba(5,10,25,.6))">
-        <img class="xmas-chunk" src="img/3f72cb95ed4c6b4df8e6d0a96e38d681.png" alt="" aria-hidden="true" style="position: absolute; right: -9%; bottom: -16%; width: clamp(150px, 19vw, 270px); height: auto; transform: rotate(10deg); z-index: 3; filter: drop-shadow(0 22px 22px rgba(5,10,25,.55))">
+        <img class="xmas-bar" src="img/ff73b765e261fae9345ff8485edd8b50.webp" alt="Cocoa Amore Merry Christmas milk chocolate bar: Santa's sleigh and reindeer across a full moon on a blue wrapper" style="position: relative; width: 100%; height: auto; display: block; filter: drop-shadow(0 50px 46px rgba(5,10,25,.6))" loading="lazy" decoding="async">
+        <img class="xmas-chunk" src="img/3f72cb95ed4c6b4df8e6d0a96e38d681.webp" alt="" aria-hidden="true" style="position: absolute; right: -9%; bottom: -16%; width: clamp(150px, 19vw, 270px); height: auto; transform: rotate(10deg); z-index: 3; filter: drop-shadow(0 22px 22px rgba(5,10,25,.55))" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -441,7 +445,7 @@ a{color:#7A5A24}a:hover{color:#1E120D}
         </div>
         <div class="rv d2"><a class="btn btn-ink" href="#">Find a chocolate gift</a></div>
       </div>
-      <div class="mask zoomwrap" style="height: 620px; overflow: hidden"><img class="zoom" src="img/4f15ee4882ed3a4838d9c93995f0e57d.jpg" alt="Floral Cocoa Amore gift boxes tied with satin ribbon bows and a gold-foil Cocoa Amore tag" style="width: 100%; height: 100%; object-fit: cover; object-position: 30% 45%; display: block"></div>
+      <div class="mask zoomwrap" style="height: 620px; overflow: hidden"><img class="zoom" src="img/4f15ee4882ed3a4838d9c93995f0e57d.webp" alt="Floral Cocoa Amore gift boxes tied with satin ribbon bows and a gold-foil Cocoa Amore tag" style="width: 100%; height: 100%; object-fit: cover; object-position: 30% 45%; display: block" loading="lazy" decoding="async"></div>
       <div class="gift-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; border-top: 1px solid rgba(30,18,13,.18)">
         <sc-for list="{{gifts}}" as="g" hint-placeholder-count="4">
           <a href="#" class="rv tlink gift-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 32px 8px; color: #1E120D; letter-spacing: normal; text-transform: none; border-bottom: 1px solid rgba(30,18,13,.18)">
@@ -472,7 +476,7 @@ a{color:#7A5A24}a:hover{color:#1E120D}
         <div class="rv d3" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center"><a class="btn btn-gold" href="#">Request a quote</a><span style="font-size: 14px; color: #CDB89A">Trusted by the University of Leicester, Mappin &amp; Webb and more.</span></div>
       </div>
       <div class="mask ph-photo" style="--ar: 1 / 1; flex: 0.8 1 380px; min-width: 0; height: 560px; background: #1E120D; position: relative; overflow: hidden">
-        <img src="img/a3dce33b75f68ba89a6aa75e34f159b6.jpg" alt="Cocoa Amore gift hamper with a black branded tin of Brussel Sprouts chocolates, a gold-logo gift box and a tagged bag of truffles" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 38% 50%; display: block">
+        <img src="img/a3dce33b75f68ba89a6aa75e34f159b6.webp" alt="Cocoa Amore gift hamper with a black branded tin of Brussel Sprouts chocolates, a gold-logo gift box and a tagged bag of truffles" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 38% 50%; display: block">
       </div>
     </div>
   </section>
@@ -493,7 +497,7 @@ a{color:#7A5A24}a:hover{color:#1E120D}
         <div class="rv d4"><a class="btn btn-line" href="#">Our story</a></div>
       </div>
       <div class="mask story-photo" style="flex: 0.8 1 380px; min-width: 0; height: 620px; border-radius: 240px 240px 0 0; background: #2E1B13; overflow: hidden; position: relative">
-        <img src="img/5eb73d69efcad5cf139719473b6e33d9.jpg" alt="Founder Pete Gardner pouring tempered milk chocolate at the Silver Street workshop" style="width: 100%; height: 100%; object-fit: cover; object-position: 60% 0%; display: block">
+        <img src="img/5eb73d69efcad5cf139719473b6e33d9.webp" alt="Founder Pete Gardner pouring tempered milk chocolate at the Silver Street workshop" style="width: 100%; height: 100%; object-fit: cover; object-position: 60% 0%; display: block" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -524,7 +528,7 @@ a{color:#7A5A24}a:hover{color:#1E120D}
   <section data-pt="C" id="visit" style="background: #242428; overflow: hidden">
     <div style="display: flex; flex-wrap: wrap">
       <div class="mask ph-photo" style="--ar: 1 / 1; flex: 1 1 560px; min-width: 0; min-height: 640px; background: #1E120D; position: relative; overflow: hidden">
-        <img src="img/63ce417c0dd88f5565824138e072a962.jpg" alt="The Cocoa Amore shop front on Silver Street, Leicester, with its black awning reading Hand-made chocolate est. 2013" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block">
+        <img src="img/63ce417c0dd88f5565824138e072a962.webp" alt="The Cocoa Amore shop front on Silver Street, Leicester, with its black awning reading Hand-made chocolate est. 2013" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block" loading="lazy" decoding="async">
       </div>
       <div class="pad-side" style="flex: 1 1 480px; min-width: 0; padding: 128px 80px; box-sizing: border-box; display: flex; flex-direction: column; gap: 30px">
         <span class="eyebrow rv" style="color: #C9A45C">Visit the boutique</span>
@@ -569,7 +573,7 @@ a{color:#7A5A24}a:hover{color:#1E120D}
     <div class="wrap" style="padding-top: 96px; padding-bottom: 40px; display: flex; flex-direction: column; gap: 64px">
       <div class="ft-top" style="display: flex; flex-wrap: wrap; gap: 48px; justify-content: space-between">
         <div class="ft-brand" style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 20px">
-          <img src="img/ce92bc30341dd82ef8af1b111ffd1e40.png" alt="Cocoa Amore" style="width: 72px; height: auto">
+          <img src="img/ce92bc30341dd82ef8af1b111ffd1e40.webp" alt="Cocoa Amore" style="width: 72px; height: auto" loading="lazy" decoding="async">
           <p class="serif" style="margin: 0; font-size: 22px; line-height: 1.4; color: #F8E8C4; max-width: 300px">Handmade chocolate from Silver Street, Leicester, since 2013.</p>
         </div>
         <sc-for list="{{footCols}}" as="col" hint-placeholder-count="4">
@@ -592,7 +596,7 @@ class Component extends DCLogic {
   componentDidMount() {
     this._t = [];
     const rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (rm) { this.setState({ paused: true }); const v = this.vid(); if (v) { const go = () => { try { v.currentTime = 15.2; } catch (e) {} }; if (v.readyState > 0) go(); else v.addEventListener('loadedmetadata', go, { once: true }); } } else setTimeout(() => this.startFilm(), 50);
+    if (rm) { this.setState({ paused: true }); const v = this.vid(); if (v) { const go = () => { try { v.currentTime = 15.2; } catch (e) {} }; if (v.readyState > 0) go(); else v.addEventListener('loadedmetadata', go, { once: true }); } } else this.startFilm();
     this._onScroll = () => {
       const s = (window.scrollY || document.documentElement.scrollTop) > 120;
       if (s !== !!(this.state && this.state.small)) this.setState({ small: s });
@@ -644,7 +648,7 @@ class Component extends DCLogic {
   startFilm() {
     const v = this.vid();
     if (!v) return;
-    v.muted = true; v.playsInline = true; v.loop = true;
+    v.muted = true; v.playsInline = true; v.loop = true; v.preload = 'auto';
     const pr = v.play(); if (pr && pr.catch) pr.catch(() => this.setState({ paused: true }));
     this.setState({ paused: false });
   }
@@ -654,10 +658,10 @@ class Component extends DCLogic {
     const stage = st.stage ?? 0;
     const clients = ['University of Leicester', 'De Montfort University', 'Mappin & Webb', 'Watches of Switzerland', "Sainsbury's", 'PepsiCo', 'Goldsmiths'];
     const stagesData = [
-      { t: 'The bean', d: 'It starts with cocoa from ethical, sustainable farmers: ripe pods, opened by hand to reveal the beans.', src: '/img/930395fc020884d78579535eab3df7dc.webp', alt: 'A cocoa pod split open, showing the beans', pos: '62% 50%' },
-      { t: 'The roast', d: 'The beans are dried and roasted, bringing out the deep, rich flavour every bar is built on.', src: '/img/3b08b892f60f9d444f340f4c1a78815f.webp', alt: 'Roasted cocoa beans, one cracked open, with steam rising', pos: '58% 50%' },
-      { t: 'The temper', d: 'Melted and tempered by hand for the glossy finish and clean snap of good chocolate.', src: '/img/ad15f3ae9cff7526ff3255e6f7890fd0.webp', alt: 'Glossy tempered chocolate pouring into a pool', pos: '62% 50%' },
-      { t: 'The mould', d: 'Poured into moulds in small batches in our Leicester kitchen, ready to set.', src: '/img/a1c3949efe6abedef27acfb9eb96c06c.webp', alt: 'Tempered chocolate being poured into a bar mould', pos: '65% 50%' }
+      { t: 'The bean', d: 'It starts with cocoa from ethical, sustainable farmers: ripe pods, opened by hand to reveal the beans.', src: 'img/930395fc020884d78579535eab3df7dc.webp', alt: 'A cocoa pod split open, showing the beans', pos: '62% 50%' },
+      { t: 'The roast', d: 'The beans are dried and roasted, bringing out the deep, rich flavour every bar is built on.', src: 'img/3b08b892f60f9d444f340f4c1a78815f.webp', alt: 'Roasted cocoa beans, one cracked open, with steam rising', pos: '58% 50%' },
+      { t: 'The temper', d: 'Melted and tempered by hand for the glossy finish and clean snap of good chocolate.', src: 'img/ad15f3ae9cff7526ff3255e6f7890fd0.webp', alt: 'Glossy tempered chocolate pouring into a pool', pos: '62% 50%' },
+      { t: 'The mould', d: 'Poured into moulds in small batches in our Leicester kitchen, ready to set.', src: 'img/a1c3949efe6abedef27acfb9eb96c06c.webp', alt: 'Tempered chocolate being poured into a bar mould', pos: '65% 50%' }
     ];
     return {
       hdrCls: st.small ? 'small' : '',
