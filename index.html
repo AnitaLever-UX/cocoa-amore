@@ -649,7 +649,18 @@ class Component extends DCLogic {
     const v = this.vid();
     if (!v) return;
     v.muted = true; v.playsInline = true; v.loop = true; v.preload = 'auto';
-    const pr = v.play(); if (pr && pr.catch) pr.catch(() => this.setState({ paused: true }));
+    // First play starts at 1s, the exact frame shown as the poster, so the film continues
+    // seamlessly from what is already on screen instead of fading in again from black.
+    // The poster stays up until that frame is ready; later loops run the full film.
+    const go = () => { const pr = v.play(); if (pr && pr.catch) pr.catch(() => this.setState({ paused: true })); };
+    if (!v._firstSeek) {
+      v._firstSeek = true;
+      let done = false; const start = () => { if (!done) { done = true; go(); } };
+      v.addEventListener('seeked', start, { once: true });
+      const seek = () => { try { v.currentTime = 1; } catch (e) { start(); } };
+      if (v.readyState >= 1) seek(); else { v.addEventListener('loadedmetadata', seek, { once: true }); v.load(); }
+      setTimeout(start, 2500);
+    } else go();
     this.setState({ paused: false });
   }
   vid() { const vs = Array.from(document.querySelectorAll('video.film')); return vs.find((x) => getComputedStyle(x).display !== 'none') || vs[0]; }
