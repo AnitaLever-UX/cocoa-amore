@@ -703,13 +703,20 @@ class Component extends DCLogic {
     };
     this._onWheel = (e) => {
       if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
-      const now = Date.now(); const fresh = now - this._howGap > 220; this._howGap = now;
+      // a new push = a pause before it, or a jump in strength while the last swipe is still coasting
+      const now = Date.now(); const a = Math.abs(e.deltaY) * (e.deltaMode === 1 ? 16 : 1);
+      const gap = now - (this._howT || 0); const prevA = this._howA || 0;
+      this._howT = now; this._howA = a;
+      // (a swipe still speeding up right after a step is the same push, not a new one)
+      const push = gap > 140 || (a > prevA * 1.4 + 3 && a >= 6 && now - (this._howStep || 0) > 350);
+      if (push) this._howOwn = false;
+      // the swipe that changed the step is used up: its coasting never moves the page
+      if (this._howOwn) { e.preventDefault(); return; }
       const z = howZone(); if (!z || !z.pinned) return;
       const dir = e.deltaY > 0 ? 1 : -1; const cur = (this.state && this.state.stage) ?? 0;
-      if (cur + dir < 0 || cur + dir > 3) return; // let the page carry on past the section
+      if (cur + dir < 0 || cur + dir > 3) return; // a fresh swipe past 01 or 04 carries on with the page
       e.preventDefault();
-      if (fresh && !this._howBusy) { this._howBusy = true; howGo(dir); }
-      clearTimeout(this._howRel); this._howRel = setTimeout(() => { this._howBusy = false; }, 240);
+      if (push && now - (this._howStep || 0) > 200) { this._howStep = now; this._howOwn = true; howGo(dir); }
     };
     this._onTS = (e) => { this._ty = e.touches[0].clientY; this._tDone = false; this._tLock = null; };
     this._onTM = (e) => {
