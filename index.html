@@ -238,7 +238,15 @@ a{color:#7A5A24}a:hover{color:#1E120D}
  .how-row{flex-direction:column;align-items:stretch;gap:28px}
  .stickcol{flex:none;height:clamp(200px, calc(min(100vh - 72px, 1000px) - 560px), 460px)}
  .how-steps{gap:16px}
+ /* tablet & phone: same top/bottom spacing as the other sections; the image gives way on short screens */
+ section[aria-label="How it's made"]{padding:96px 0}
+ .how-pin{align-items:stretch}
+ .how-in{height:100%;box-sizing:border-box;padding-top:24px;padding-bottom:24px}
+ .how-row{flex:1 1 auto;min-height:0}
+ .stickcol{flex:1 1 auto;height:auto;min-height:120px;max-height:none !important}
+ .how-steps{flex:none}
 }
+@media (max-width:768px){section[aria-label="How it's made"]{padding:80px 0}}
 @media (max-width:768px){
  .how-head h2{font-size:34px !important}
  .how-in{gap:20px}
