@@ -221,7 +221,7 @@ a{color:#7A5A24}a:hover{color:#1E120D}
 @media (min-width:1101px){.hero-copy{width:auto !important;max-width:calc(760px + max(80px, calc((100vw - 1320px) / 2 + 80px))) !important}.hero-copy h1 .line>span{white-space:nowrap}}
 
 /* how it's made: the whole section pins; one step at a time, image and text swap together */
-.how-track{position:relative;height:calc(min(100vh - 72px, 1000px) + 3 * min(75vh, 680px))}
+.how-track{position:relative;height:calc(min(100vh - 72px, 1000px) + 3 * min(60vh, 560px))}
 .how-pin{position:sticky;top:72px;height:min(calc(100vh - 72px), 1000px);display:flex;align-items:center;overflow:hidden}
 .how-in{width:100%;display:flex;flex-direction:column;gap:clamp(24px,5vh,56px)}
 .how-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 32px;flex-wrap:wrap}
@@ -255,8 +255,6 @@ a{color:#7A5A24}a:hover{color:#1E120D}
 /* collection: a few small pod marks placed in the open spaces */
 #collection .pod{position:absolute;height:auto;fill:#E7D9E4;pointer-events:none;z-index:0}
 #collection .pod use{transform-box:fill-box;transform-origin:50% 60%}
-#collection.pods-breathe .pod use{animation:podclose 2.4s cubic-bezier(.65,0,.35,1) var(--pd,0s) 1}
-@keyframes podclose{0%,100%{transform:scale(1,1)}40%,55%{transform:scale(.52,1.04)}}
 @media (prefers-reduced-motion:reduce){#collection.pods-breathe .pod use{animation:none}}
 @media (max-width:1100px){#collection .pod:not(.pd-edge){display:none}#collection .pod{width:44px !important}}
 @media (max-width:768px){#collection .pod{display:none}}
@@ -679,6 +677,47 @@ class Component extends DCLogic {
       this.syncNav();
     };
     window.addEventListener('scroll', this._onScroll, { passive: true });
+    // How it's made: one wheel flick / trackpad swipe / finger swipe = one step
+    this._howGap = 0; this._howBusy = false;
+    const howZone = () => {
+      const tr = document.querySelector('.how-track'); const pin = tr && tr.querySelector('.how-pin');
+      if (!tr || !pin) return null;
+      const r = tr.getBoundingClientRect(); const span = r.height - pin.offsetHeight;
+      const pinned = r.top <= 73 && r.bottom >= 72 + pin.offsetHeight - 1;
+      return { tr, r, span, pinned };
+    };
+    const howGo = (dir) => {
+      const z = howZone(); if (!z || !z.pinned) return false;
+      const cur = (this.state && this.state.stage) ?? 0; const next = cur + dir;
+      if (next < 0 || next > 3) return false;
+      const top = window.scrollY + z.r.top - 72;
+      window.scrollTo({ top: top + Math.round(z.span * next / 3), behavior: 'auto' });
+      this.setState({ stage: next });
+      return true;
+    };
+    this._onWheel = (e) => {
+      if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+      const now = Date.now(); const fresh = now - this._howGap > 220; this._howGap = now;
+      const z = howZone(); if (!z || !z.pinned) return;
+      const dir = e.deltaY > 0 ? 1 : -1; const cur = (this.state && this.state.stage) ?? 0;
+      if (cur + dir < 0 || cur + dir > 3) return; // let the page carry on past the section
+      e.preventDefault();
+      if (fresh && !this._howBusy) { this._howBusy = true; howGo(dir); }
+      clearTimeout(this._howRel); this._howRel = setTimeout(() => { this._howBusy = false; }, 240);
+    };
+    this._onTS = (e) => { this._ty = e.touches[0].clientY; this._tDone = false; this._tLock = null; };
+    this._onTM = (e) => {
+      if (this._ty == null) return;
+      const dy = this._ty - e.touches[0].clientY;
+      if (this._tLock === null && Math.abs(dy) > 4) {
+        const z = howZone(); const cur = (this.state && this.state.stage) ?? 0; const dir = dy > 0 ? 1 : -1;
+        this._tLock = !!(z && z.pinned && cur + dir >= 0 && cur + dir <= 3); this._tDir = dir;
+      }
+      if (this._tLock) { if (e.cancelable) e.preventDefault(); if (!this._tDone && Math.abs(dy) > 28) { this._tDone = true; howGo(this._tDir); } }
+    };
+    window.addEventListener('wheel', this._onWheel, { passive: false });
+    window.addEventListener('touchstart', this._onTS, { passive: true });
+    window.addEventListener('touchmove', this._onTM, { passive: false });
     window.addEventListener('resize', this._onScroll, { passive: true });
     this._obsT = setTimeout(() => this.observe(), 60);
   }
@@ -686,6 +725,7 @@ class Component extends DCLogic {
   componentWillUnmount() {
     (this._t || []).forEach(clearTimeout); clearTimeout(this._obsT); clearInterval(this._podT); clearTimeout(this._podOff);
     window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('wheel', this._onWheel); window.removeEventListener('touchstart', this._onTS); window.removeEventListener('touchmove', this._onTM);
     window.removeEventListener('resize', this._onScroll);
     if (this._io) this._io.disconnect();
   }
@@ -723,8 +763,8 @@ class Component extends DCLogic {
     const pin = tr.querySelector('.how-pin');
     const r = tr.getBoundingClientRect();
     const span = r.height - (pin ? pin.offsetHeight : 0);
-    const p = span > 0 ? Math.min(Math.max((72 - r.top) / span, 0), 0.9999) : 0;
-    const idx = Math.floor(p * 4);
+    const p = span > 0 ? Math.min(Math.max((72 - r.top) / span, 0), 1) : 0;
+    const idx = Math.min(3, Math.round(p * 3));
     if (idx !== ((this.state && this.state.stage) ?? 0)) this.setState({ stage: idx });
   }
   startFilm() {
