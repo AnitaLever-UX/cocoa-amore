@@ -77,6 +77,8 @@ a{color:#7A5A24}a:hover{color:#1E120D}
 /* campaign entrance */
 .camp{background:#1E120D;transition:background-color 1.2s cubic-bezier(.22,1,.36,1)}
 .camp.in{background:var(--camp)}
+/* Christmas section: blue from the very first pixel, no brown start */
+.camp[aria-label="Seasonal and limited editions"]{background:var(--camp);transition:none}
 .camp .prod{opacity:0;transform:scale(.94);transition:opacity 1.2s .2s cubic-bezier(.22,1,.36,1),transform 1.2s .2s cubic-bezier(.22,1,.36,1)}
 .camp.in .prod{opacity:1;transform:none}
 .camp .sup{opacity:0;transform:translateY(24px);transition:all .9s .5s cubic-bezier(.22,1,.36,1)}
